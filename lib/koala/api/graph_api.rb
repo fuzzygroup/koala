@@ -108,6 +108,23 @@ module Koala
       alias_method :get_connections, :get_connection
 
 
+      # Fetches a achievement.
+      #
+      # @param options options for Facebook (see #get_object).
+      #                        To get a different size photo, pass :type => size (small, normal, large, square).
+      #
+      # @note to delete photos or videos, use delete_object(id)
+      #
+      # @return the URL to the image
+      def get_achievement(object, args = {}, options = {})
+        # Gets a picture object, returning the URL (which Facebook sends as a header)
+        # graph_call("#{object}/achievement", args, "get", options.merge(:http_component => :headers)) do |result|
+        #   result["Location"]
+        # end
+        graph_call("#{id}/#{achievement}", args, "get", options)
+      end
+
+
       # Write an object to the Graph for a specific user.
       # See {http://developers.facebook.com/docs/api#publishing Facebook's documentation}
       # for all the supported writeable objects.
